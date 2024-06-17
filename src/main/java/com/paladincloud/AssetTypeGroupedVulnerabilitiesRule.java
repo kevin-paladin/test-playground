@@ -51,12 +51,8 @@ public class AssetTypeGroupedVulnerabilitiesRule {
         String category = ruleParam.get(Constants.CATEGORY);
         String severity = ruleParam.get(Constants.SEVERITY);
         String severityMatchCriteria = ruleParam.get(Constants.SEVERITY_MATCH_CRITERIA);
-        String vulnerabilityIndex = ruleParam.get(Constants.VULNERABILITY_INDEX);
-        String vulnAssetLookupKey = ruleParam.get(Constants.VULN_ASSET_LOOKUP_KEY);
         /* this param determines the asset key in source index. for eg. for azure_virtualmachine asset key is vmId  */
         String srcAssetKey = ruleParam.get(Constants.SRC_ASSET_KEY);
-        String vulnerabilitiesEndpoint =
-            Utils.getHost(Constants.ES_URI) + "/" + vulnerabilityIndex + "/_search";
         if (!Utils.doesAllHaveValue(category, severity)) {
             throw new RuntimeException(Constants.MISSING_CONFIGURATION);
         }
@@ -67,8 +63,7 @@ public class AssetTypeGroupedVulnerabilitiesRule {
                     resourceAttributes.get(Constants.RESOURCE_ID)));
             List<JsonObject> vulnerabilityInfoList = new ArrayList<>();
             try {
-                vulnerabilityInfoList = Utils.matchAssetAgainstSourceVulnIndex(instanceId,
-                    vulnerabilitiesEndpoint, vulnAssetLookupKey, null);
+                vulnerabilityInfoList = Utils.matchAssetAgainstSourceVulnerabilityIndex(instanceId);
             } catch (Exception e) {
                 throw new RuntimeException("unable to determine", e);
             }

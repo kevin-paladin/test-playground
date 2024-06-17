@@ -47,12 +47,8 @@ public class AssetTypeScannedBySourceRule {
         Map<String, String> resourceAttributes) {
         String category = policyParam.get(Constants.CATEGORY);
         String severity = policyParam.get(Constants.SEVERITY);
-        String assetLookupIndex = policyParam.get(ASSET_LOOKUP_INDEX);
         /* this param determines the asset key in source index. for eg. for azure_virtualmachine asset key is vmId  */
         String srcAssetKey = policyParam.get(SRC_ASSET_KEY);
-        String vulnAssetLookupKey = policyParam.get(VULN_ASSET_LOOKUP_KEY);
-        String vulnerabilitiesEndpoint =
-            Utils.getHost(Constants.ES_URI) + "/" + assetLookupIndex + "/_search";
         if (!Utils.doesAllHaveValue(category, severity)) {
             throw new RuntimeException(Constants.MISSING_CONFIGURATION);
         }
@@ -63,8 +59,7 @@ public class AssetTypeScannedBySourceRule {
                     resourceAttributes.get(Constants.RESOURCE_ID)));
             List<JsonObject> vulAssetList;
             try {
-                vulAssetList = Utils.matchAssetAgainstSourceVulnIndex(instanceId,
-                    vulnerabilitiesEndpoint, vulnAssetLookupKey, null);
+                vulAssetList = Utils.matchAssetAgainstSourceVulnerabilityIndex(instanceId);
             } catch (Exception e) {
                 throw new RuntimeException("unable to determine" + e);
             }
