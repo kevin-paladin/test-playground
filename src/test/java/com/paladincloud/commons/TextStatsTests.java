@@ -19,7 +19,10 @@ class TextStatsTests {
 
     @Test
     void multiLineTextReturnsCount() {
-        var actual = TextStats.process("Hello!\nHow are you doing?\nWhat are you doing today?");
+        var actual = TextStats.process("""
+            Hello!
+            How are you doing?
+            What are you doing today?""");
         var expected = new HashMap<>(
             Map.ofEntries(entry("hello", 1), entry("how", 1), entry("doing", 2), entry("what", 1),
                 entry("are", 2), entry("today", 1), entry("you", 2)));
