@@ -1,4 +1,4 @@
-package BasicFunctions;
+package com.paladincloud.basicfunctions;
 
 public class BasicFunctionDependencies {
     public static int dependencyAdd(int a, int b) { // A dependency method for BasicFunctions

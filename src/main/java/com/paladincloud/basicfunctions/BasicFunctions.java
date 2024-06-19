@@ -1,4 +1,4 @@
-package BasicFunctions;
+package com.paladincloud.basicfunctions;
 
 public class BasicFunctions {
 
