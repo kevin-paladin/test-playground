@@ -1,22 +1,24 @@
 package CoPilotTesting;
 
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.paladincloud.FakeSearchRepository;
 
+import com.paladincloud.Utils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
-/*import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-*/
+import org.mockito.Mockito;
+
 
 public class TestCases {
 
@@ -43,7 +45,7 @@ public class TestCases {
 
     //test 2:
     //successful output
-    @org.junit.Test
+    @Test
     public void testSortArray() {
         int[] inputArray = {5, 2, 9, 1, 5}; // Example input array
         int[] expectedSortedArray = {1, 2, 5, 5, 9}; // Expected sorted array
@@ -52,7 +54,7 @@ public class TestCases {
         assertArrayEquals(expectedSortedArray, result);
     }
 
-    @org.junit.Test
+    @Test
     public void testGetRuleParams() {
         Map<String, String> expectedParams = new HashMap<>();
         expectedParams.put("severity", "critical");
@@ -63,7 +65,7 @@ public class TestCases {
         assertEquals(expectedParams, result);
     }
 
-    @org.junit.Test
+    @Test
     public void testGetConvertedNodePools() {
         String nodePoolsJson = "[{\"name\":\"pool1\",\"management\":{\"auto_upgrade\":true,\"auto_repair\":false},\"config\":{\"shielded_instance_config\":{\"enable_integrity\":true,\"enable_secure_boot\":false}}}]";
         ObjectMapper mapper = new ObjectMapper();
@@ -78,19 +80,19 @@ public class TestCases {
     @Test
     public void testDoesAllHaveValue() {
         // Test with null input
-        Assert.assertFalse(StringUtils.com.paladincloud.Utils.doesAllHaveValue(null));
+        assertFalse(Utils.doesAllHaveValue(null));
 
         // Test with empty array
-        Assert.assertFalse(StringUtils.com.paladincloud.Utils.doesAllHaveValue());
+        assertFalse(Utils.doesAllHaveValue());
 
         // Test with array containing empty string
-        Assert.assertFalse(StringUtils.com.paladincloud.Utils.doesAllHaveValue("", "test"));
+        assertFalse(Utils.doesAllHaveValue("", "test"));
 
         // Test with array containing null
-        Assert.assertFalse(StringUtils.com.paladincloud.Utils.doesAllHaveValue(null, "test"));
+        assertFalse(Utils.doesAllHaveValue(null, "test"));
 
         // Test with array containing all non-empty strings
-        Assert.assertTrue(StringUtils.com.paladincloud.Utils.doesAllHaveValue("test", "test2"));
+        assertTrue(Utils.doesAllHaveValue("test", "test2"));
     }
 
     @Test
@@ -107,8 +109,8 @@ public class TestCases {
         List<JsonObject> result = com.paladincloud.Utils.matchAssetAgainstSourceVulnerabilityIndex("testInstanceId");
 
         // Verify the result
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals("testValue", result.get(0).get("testKey").getAsString());
+        assertEquals(1, result.size());
+        assertEquals("testValue", result.get(0).get("testKey").getAsString());
     }
 
     public static void main(String[] args) {
