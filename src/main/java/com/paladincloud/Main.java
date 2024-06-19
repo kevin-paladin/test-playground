@@ -10,7 +10,7 @@ public class Main {
         System.out.println(STR."The policy; name=\{policyResult.getDesc()}; status=\{policyResult.getStatus()};");
     }
 
-    private static Map<String, String> getRuleParams() {
+    public static Map<String, String> getRuleParams() { // made this public so that it can be tested
         Map<String, String> map = new HashMap<>();
         map.put("severity", "critical");
         map.put("severityMatchCriteria", "critical");
