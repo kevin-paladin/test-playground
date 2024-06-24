@@ -59,7 +59,7 @@ public class AssetTypeScannedBySourceRule {
                     resourceAttributes.get(Constants.RESOURCE_ID)));
             List<JsonObject> vulAssetList;
             try {
-                vulAssetList = Utils.matchAssetAgainstSourceVulnerabilityIndex(instanceId);
+                vulAssetList = new HardCodedAssetLookup().findMatchingAssetsWithVulnerabilities(instanceId);
             } catch (Exception e) {
                 throw new RuntimeException("unable to determine" + e);
             }

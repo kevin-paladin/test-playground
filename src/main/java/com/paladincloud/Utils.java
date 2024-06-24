@@ -28,21 +28,4 @@ public class Utils {
         }
         return true;
     }
-
-    public static List<JsonObject> matchAssetAgainstSourceVulnerabilityIndex(String instanceId) {
-        List<JsonObject> resourceVerified = new ArrayList<>();
-
-        try {
-            JsonArray resultJson = FakeSearchRepository.query(instanceId);
-            if (resultJson != null && !resultJson.isEmpty()) {
-                for (JsonElement element : resultJson) {
-                    resourceVerified.add(element.getAsJsonObject());
-                }
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return resourceVerified;
-    }
 }

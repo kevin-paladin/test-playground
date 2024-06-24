@@ -7,11 +7,10 @@ import static org.mockito.Mockito.when;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.paladincloud.FakeSearchRepository;
+import com.paladincloud.HardCodedAssetLookup;
 import com.paladincloud.Utils;
 import java.util.List;
 import java.util.stream.Stream;
-import org.apache.commons.lang3.StringUtils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -53,25 +52,6 @@ public class UtilsTests {
                 Arguments.of(new String[]{null, "test"}, false),
                 Arguments.of(new String[]{"test", "test2"}, true)
         );
-    }
-
-    @Test
-    public void testMatchAssetAgainstSourceVulnerabilityIndex() {
-        // Mock the FakeSearchRepository.query method
-        FakeSearchRepository mockRepository = Mockito.mock(FakeSearchRepository.class);
-        JsonArray mockArray = new JsonArray();
-        JsonObject mockObject = new JsonObject();
-        mockObject.addProperty("testKey", "testValue");
-        mockArray.add(mockObject);
-        when(FakeSearchRepository.query("testInstanceId")).thenReturn(mockArray);
-
-        // Call the method to test
-        List<JsonObject> result = com.paladincloud.Utils.matchAssetAgainstSourceVulnerabilityIndex(
-            "testInstanceId");
-
-        // Verify the result
-        assertEquals(1, result.size());
-        assertEquals("testValue", result.get(0).get("testKey").getAsString());
     }
 
 }

@@ -1,9 +1,13 @@
 package com.paladincloud;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import java.util.ArrayList;
+import java.util.List;
 
-public class FakeSearchRepository {
+public class HardCodedAssetLookup implements AssetLookup {
 
     private static final String RESOURCE_TEMPLATE = """
         [
@@ -53,7 +57,23 @@ public class FakeSearchRepository {
             ]
         }]""";
 
-    public static JsonArray query(String instanceId) {
-        return JsonParser.parseString(String.format(RESOURCE_TEMPLATE, instanceId)).getAsJsonArray();
+
+    @Override
+    public List<JsonObject> findMatchingAssetsWithVulnerabilities(String instanceId) {
+        List<JsonObject> resourceVerified = new ArrayList<>();
+
+        try {
+            JsonArray resultJson = JsonParser.parseString(String.format(RESOURCE_TEMPLATE, instanceId))
+                .getAsJsonArray();
+            if (resultJson != null && !resultJson.isEmpty()) {
+                for (JsonElement element : resultJson) {
+                    resourceVerified.add(element.getAsJsonObject());
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return resourceVerified;
     }
 }

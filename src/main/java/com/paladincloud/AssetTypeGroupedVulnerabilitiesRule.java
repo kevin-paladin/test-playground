@@ -46,7 +46,7 @@ public class AssetTypeGroupedVulnerabilitiesRule {
      *                           provided by execution engine
      * @return the rule result
      */
-    public PolicyResult execute(Map<String, String> ruleParam,
+    public PolicyResult execute(AssetLookup assetLookup, Map<String, String> ruleParam,
         Map<String, String> resourceAttributes) {
         String category = ruleParam.get(Constants.CATEGORY);
         String severity = ruleParam.get(Constants.SEVERITY);
@@ -63,7 +63,7 @@ public class AssetTypeGroupedVulnerabilitiesRule {
                     resourceAttributes.get(Constants.RESOURCE_ID)));
             List<JsonObject> vulnerabilityInfoList = new ArrayList<>();
             try {
-                vulnerabilityInfoList = Utils.matchAssetAgainstSourceVulnerabilityIndex(instanceId);
+                vulnerabilityInfoList = assetLookup.findMatchingAssetsWithVulnerabilities(instanceId);
             } catch (Exception e) {
                 throw new RuntimeException("unable to determine", e);
             }
