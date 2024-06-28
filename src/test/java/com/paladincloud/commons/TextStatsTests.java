@@ -76,7 +76,7 @@ class TextStatsTests {
     @ParameterizedTest
     @CsvSource({
             "'Hello world! Hello everyone.', 3, hello, 2, world, 1, everyone, 1",
-            "'Hello hello hello', 1, hello, 3, hello, 3, hello, 3",
+            "'Hello hello hello', 1, hello, 3, world, 0",
             "'', 0, ",
             // Add more test cases here
     })

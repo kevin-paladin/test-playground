@@ -31,4 +31,26 @@ public class AssetTypeGroupedVulnerabilitiesRuleTests {
         // TBD: This should also verify the vulnerabilities & maybe the CVEs
     }
 
+    @Test
+    public void verifyVulnerabilitiesResultsInSuccessfulPolicy() {
+        // Arrange
+        Map<String, String> policyParam = new HashMap<>();
+        policyParam.put(Constants.CATEGORY, "category");
+        policyParam.put(Constants.SEVERITY, "severity");
+        policyParam.put("severityMatchCriteria", "low"); // Change this to a lower severity
+        policyParam.put(Constants.SRC_ASSET_KEY, "srcAssetKey");
+
+        Map<String, String> resourceAttributes = new HashMap<>();
+        resourceAttributes.put("srcAssetKey", "instanceId");
+        resourceAttributes.put(Constants.RESOURCE_ID, "resourceId");
+
+        var assetRule = new AssetTypeGroupedVulnerabilitiesRule();
+
+        // Act
+        PolicyResult result = assetRule.execute(TestAssetLookup.createPassingInstance(), policyParam, resourceAttributes); // Use a passing instance
+
+        // Assert
+        assertEquals(Constants.STATUS_SUCCESS, result.getStatus());
+    }
+
 }

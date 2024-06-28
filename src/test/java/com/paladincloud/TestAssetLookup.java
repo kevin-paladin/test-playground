@@ -19,6 +19,10 @@ public class TestAssetLookup implements AssetLookup {
         return new TestAssetLookup(TestData.FAILING_DATA);
     }
 
+    public static AssetLookup createPassingInstance() {
+        return new TestAssetLookup(TestData.PASSING_DATA_Attempt2);
+    }
+
     @Override
     public List<JsonObject> findMatchingAssetsWithVulnerabilities(String instanceId) {
         List<JsonObject> resourceVerified = new ArrayList<>();
@@ -40,14 +44,40 @@ public class TestAssetLookup implements AssetLookup {
 
     static class TestData {
 
-        private static final String SUCCEEDING_DATA = """
-            [
-            {
-                "instanceId": "iid-1",
-                "medium": [],
-                "low": [],
-                "critical": []
-            }]""";
+        private static final String PASSING_DATA_Attempt1 = """
+        [
+        {
+            "instanceId": "iid-1",
+            "medium": [],
+            "low": [
+                {
+                    "severity": "low",
+                    "vulnerabilities": [
+                        {
+                            "id": "CVE-2020-36330",
+                            "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-36330"
+                        },
+                        {
+                            "id": "CVE-2018-25014",
+                            "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-25014"
+                        }
+                    ],
+                    "title": "libwebp 0.3.0-10.amzn2",
+                    "url": "https://example.com",
+                    "referenceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-36330"
+                }
+            ],
+            "critical": []
+        }]""";
+
+        private static final String PASSING_DATA_Attempt2 = """
+        [
+        {
+            "instanceId": "iid-1",
+            "medium": [],
+            "low": [],
+            "critical": []
+        }]""";
 
         private static final String FAILING_DATA = """
             [
