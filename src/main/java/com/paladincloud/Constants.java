@@ -22,6 +22,7 @@ public class Constants {
     public static final String STATUS_FAILURE = "fail";
     public static final String FAILURE_MESSAGE = "Error in policy evaluation";
     public static final String SUCCESS_MESSAGE = "Policy evaluation successful";
+    public static final String VULNERABILITY_DETAILS = "vulnerabilityDetails";
 
     public static final String SOURCE = "_source";
     public static final String HITS = "hits";

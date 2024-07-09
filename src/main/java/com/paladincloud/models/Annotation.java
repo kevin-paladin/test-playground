@@ -24,6 +24,14 @@ public class Annotation extends HashMap<String, String> {
     public Annotation() {
     }
 
+    public static Annotation create(String policyName, String policyId, String type) {
+        var annotation = new Annotation();
+        annotation.put(Constants.POLICY_NAME, policyName);
+        annotation.put(Constants.POLICY_ID, policyId);
+        annotation.put(Constants.TYPE, type);
+        return annotation;
+    }
+
     /**
      * Builds the annotation.
      *
