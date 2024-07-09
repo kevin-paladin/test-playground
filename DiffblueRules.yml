@@ -1,0 +1,7 @@
+java.lang.String:
+  - immediate: "w;o]r l{d}"
+    method: removeNonSpaceAndCharacters
+    parameter: str
+  - immediate: "Hell}o"
+    method: removeNonSpaceAndCharacters
+    parameter: str

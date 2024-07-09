@@ -71,54 +71,6 @@ class TextStatsTests {
         assertEquals(1, result.get("everyone"), "The word 'everyone' appears once.");
     }
 
-    //changed it to a parameterized test
-    //pretty sure every assertion it makes is wrong
-    @ParameterizedTest
-    @CsvSource({
-            "'Hello world! Hello everyone.', 3, hello, 2, world, 1, everyone, 1",
-            "'Hello hello hello', 1, hello, 3, world, 0",
-            "'', 0, ",
-            // Add more test cases here
-    })
-    public void testProcess2(String text, int size, String word1, int count1, String word2, int count2, String word3, int count3) {
-        Map<String, Integer> result = TextStats.process(text);
-
-        assertEquals(size, result.size(), "The size of the map should be " + size);
-        assertEquals(count1, result.get(word1), "The word '" + word1 + "' appears " + count1 + " times.");
-        if (word2 != null) {
-            assertEquals(count2, result.get(word2), "The word '" + word2 + "' appears " + count2 + " times.");
-        }
-        if (word3 != null) {
-            assertEquals(count3, result.get(word3), "The word '" + word3 + "' appears " + count3 + " times.");
-        }
-    }
-
-    //changed it to a parameterized test with @methodsource
-    //pretty sure every assertion it makes is wrong
-    @ParameterizedTest
-    @MethodSource("provideTestCases")
-    public void testProcess3(String text, int size, String word1, int count1, String word2, int count2, String word3, int count3) {
-        Map<String, Integer> result = TextStats.process(text);
-
-        assertEquals(size, result.size(), "The size of the map should be " + size);
-        assertEquals(count1, result.get(word1), "The word '" + word1 + "' appears " + count1 + " times.");
-        if (word2 != null) {
-            assertEquals(count2, result.get(word2), "The word '" + word2 + "' appears " + count2 + " times.");
-        }
-        if (word3 != null) {
-            assertEquals(count3, result.get(word3), "The word '" + word3 + "' appears " + count3 + " times.");
-        }
-    }
-
-    private static Stream<Arguments> provideTestCases() {
-        return Stream.of(
-                Arguments.of("Hello world! Hello everyone.", 3, "hello", 2, "world", 1, "everyone", 1),
-                Arguments.of("Hello hello hello", 1, "hello", 3, null, null, null, null),
-                Arguments.of("", 0, null, null, null, null, null, null)
-                // Add more test cases here
-        );
-    }
-
     // asked for 5 negative test cases
     @Test
     void testProcessNull() {
