@@ -1,0 +1,9 @@
+---
+fullClassName: "com.paladincloud.StringExtrasSapientGeneratedCodelessTest"
+testMethodExecutions:
+- targetMethod: "String removeNonSpaceAndCharacters(String str)"
+  tests:
+  - testName: "removeNonSpaceAndCharactersWhenTokenizerHasMoreTokens"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "\\\"str1\\\""
+    timestamp: 1721092776610

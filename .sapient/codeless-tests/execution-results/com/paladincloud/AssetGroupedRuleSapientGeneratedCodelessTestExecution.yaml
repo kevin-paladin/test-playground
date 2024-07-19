@@ -1,0 +1,28 @@
+---
+fullClassName: "com.paladincloud.AssetGroupedRuleSapientGeneratedCodelessTest"
+testMethodExecutions:
+- targetMethod: "PolicyResult execute(List<Asset> assets, RuleParameters ruleParameters,\
+    \ ResourceAttributes resourceAttributes)"
+  tests:
+  - testName: "executeWhenMatchingAssetsIsEmpty"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "null"
+    timestamp: 1721093324156
+  - testName: "executeWhenVulnerabilitiesIsEmptyAndPolicyResultIsNull"
+    testExecutionStatus: "FAILED"
+    resultValue: "NEW PolicyResult(\\\"success\\\", \\\"Policy evaluation successful\\\
+      \")"
+    pathFailureReasons:
+    - "java.lang.NullPointerException: Cannot invoke \\\"com.paladincloud.AssetGroupedRule$SeverityLevel.ordinal()\\\
+      \" because \\\"severityLevel\\\" is null"
+    timestamp: 1721093324158
+    failureLineNumber: 69
+  - testName: "executeWhenPolicyResultIsNotNull"
+    testExecutionStatus: "FAILED"
+    resultValue: "NEW PolicyResult(\\\"fail\\\", \\\"Error in policy evaluation\\\"\
+      , new Annotation() { uniqueUuid32, uniqueUuid34, uniqueUuid36 })"
+    pathFailureReasons:
+    - "java.lang.NullPointerException: Cannot invoke \\\"com.paladincloud.AssetGroupedRule$SeverityLevel.ordinal()\\\
+      \" because \\\"severityLevel\\\" is null"
+    timestamp: 1721093324160
+    failureLineNumber: 109

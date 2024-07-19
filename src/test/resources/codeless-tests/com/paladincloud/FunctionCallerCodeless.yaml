@@ -1,0 +1,227 @@
+---
+class: "com.paladincloud.FunctionCaller"
+fields: []
+imports:
+- "java.lang.String"
+- "java.lang.Object"
+- "java.util.List"
+- "java.util.Map"
+- "java.lang.Class"
+- "com.fasterxml.jackson.databind.ObjectMapper"
+- "java.util.ArrayList"
+- "java.util.HashMap"
+- "java.lang.Boolean"
+- "java.util.Collection"
+- "java.lang.NullPointerException"
+methods:
+- targetMethod: "getConvertedNodePools(String nodePools): Object result"
+  tests:
+  - name: "getConvertedNodePoolsWhenShieldedConfigNodeIsNotNull"
+    disabled: true
+    variables:
+    - nodePools: "[{auto_repair_node={value=false}, name={value=pool1}, enable_integrity_node={value=true},\
+        \ enable_secure_boot_node={value=false}, auto_upgrade_node={value=true}},\
+        \ {auto_repair_node={value=true}, name={value=pool2}, enable_integrity_node={value=false},\
+        \ enable_secure_boot_node={value=true}, auto_upgrade_node={value=false}}]"
+    - objectMapper: "NEW ObjectMapper()"
+    - uniqueRUuid2: "name"
+    - string: "fromValueItem1Item1Value1"
+    - uniqueRUuid1: "EVAL Map.entry(String uniqueRUuid2, String string)"
+    - uniqueRUuid4: "auto_upgrade_node"
+    - boolean3: false
+    - uniqueRUuid3: "EVAL Map.entry(String uniqueRUuid4, Boolean boolean3)"
+    - uniqueRUuid6: "auto_repair_node"
+    - boolean5: false
+    - uniqueRUuid5: "EVAL Map.entry(String uniqueRUuid6, Boolean boolean5)"
+    - uniqueRUuid8: "enable_integrity_node"
+    - boolean7: false
+    - uniqueRUuid7: "EVAL Map.entry(String uniqueRUuid8, Boolean boolean7)"
+    - uniqueRUuid10: "enable_secure_boot_node"
+    - boolean9: false
+    - uniqueRUuid9: "EVAL Map.entry(String uniqueRUuid10, Boolean boolean9)"
+    - hashMap: "NEW HashMap<String,Object>()"
+      elements:
+      - "REF uniqueRUuid1"
+      - "REF uniqueRUuid3"
+      - "REF uniqueRUuid5"
+      - "REF uniqueRUuid7"
+      - "REF uniqueRUuid9"
+    - arrayList: "NEW ArrayList<Map<String,Object>>()"
+      elements:
+      - "REF hashMap"
+    - uniqueRUuid11: "EVAL Object.class"
+    - object7: "EVAL objectMapper.convertValue(List<Map<String,Object>> arrayList,Class<Object>\
+        \ uniqueRUuid11):Object"
+    - result: "REF object7"
+    branches:
+    - expression: "for-each(originalNode) : true"
+      lineNumber: 53
+    - expression: "managementNode != null : true"
+      lineNumber: 58
+    - expression: "configNode != null : true"
+      lineNumber: 66
+    - expression: "shieldedConfigNode != null : true"
+      lineNumber: 68
+    failureReason:
+      type: "VARIABLE_THAT_COULD_NOT_BE_ISOLATED_MOCKED"
+      source: "JsonNode originalNode = mapper.readTree(nodePools);"
+      lineNumber: 52
+      details: "A variable could not be isolated/mocked when calling a method - Variable\
+        \ name: mapper - Method: readTree"
+  - name: "getConvertedNodePoolsWhenShieldedConfigNodeIsNotNullAndCaughtIOException"
+    variables:
+    - nodePools: "[{auto_repair_node={value=false}, name={value=pool1}, enable_integrity_node={value=true},\
+        \ enable_secure_boot_node={value=false}, auto_upgrade_node={value=true}},\
+        \ {auto_repair_node={value=true}, name={value=pool2}, enable_integrity_node={value=false},\
+        \ enable_secure_boot_node={value=true}, auto_upgrade_node={value=false}}]"
+    - object8: "NULL"
+    - result: "REF object8"
+    branches:
+    - expression: "for-each(originalNode) : true"
+      lineNumber: 53
+    - expression: "managementNode != null : true"
+      lineNumber: 58
+    - expression: "configNode != null : true"
+      lineNumber: 66
+    - expression: "shieldedConfigNode != null : true"
+      lineNumber: 68
+    - expression: "catch-exception (IOException) : true"
+      lineNumber: 79
+    failureReason:
+      type: "VARIABLE_THAT_COULD_NOT_BE_ISOLATED_MOCKED"
+      source: "JsonNode originalNode = mapper.readTree(nodePools);"
+      lineNumber: 52
+      details: "A variable could not be isolated/mocked when calling a method - Variable\
+        \ name: mapper - Method: readTree"
+  sourceCodeSignature: "Object getConvertedNodePools(String nodePools)"
+- targetMethod: "convertDateTimeFormat(String inputDateTimeString, String currentDateFormat,\
+    \ String expectedDateFormat): String result"
+  tests:
+  - name: "convertDateTimeFormatTest"
+    variables:
+    - inputDateTimeString: "2022-01-01T00:00:00Z"
+    - currentDateFormat: "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    - expectedDateFormat: "MM/dd/yyyy HH:mm:ss"
+    - string: "01/01/2022 00:00:00"
+    - result: "REF string"
+  sourceCodeSignature: "String convertDateTimeFormat(String inputDateTimeString, String\
+    \ currentDateFormat, String expectedDateFormat)"
+- targetMethod: "consolidateVulnerabilitiesByTitle(Collection<Map<String, Object>>\
+    \ vulnerabilities, String separator): Collection<Map<String, Object>> result"
+  tests:
+  - name: "consolidateVulnerabilitiesByTitleWhenUniquePrefixesNotContainsKeyShortTitle"
+    variables:
+    - uniqueUuid35: "id"
+    - object5: "MOCK"
+      mock-name: "object5"
+    - uniqueUuid34: "EVAL Map.entry(String uniqueUuid35, Object object5)"
+    - objectKey1: "vulnerabilitiesItem1Item2Key1"
+    - objectValue1: "NEW Object()"
+    - uniqueUuid36: "EVAL Map.entry(String objectKey1, Object objectValue1)"
+    - uniqueUuid38: "referenceUrl"
+    - object6: "MOCK"
+      mock-name: "object6"
+    - uniqueUuid37: "EVAL Map.entry(String uniqueUuid38, Object object6)"
+    - uniqueUuid40: "title"
+    - string: "object2"
+    - uniqueUuid39: "EVAL Map.entry(String uniqueUuid40, String string)"
+    - uniqueUuid42: "vulnerabilities"
+    - uniqueUuid44: "id"
+    - string2: "object5"
+    - uniqueUuid43: "EVAL Map.entry(String uniqueUuid44, String string2)"
+    - uniqueUuid46: "url"
+    - string4: "object6"
+    - uniqueUuid45: "EVAL Map.entry(String uniqueUuid46, String string4)"
+    - hashMap2: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid43"
+      - "REF uniqueUuid45"
+    - arrayList: "NEW ArrayList()"
+      elements:
+      - "REF hashMap2"
+    - uniqueUuid41: "EVAL Map.entry(String uniqueUuid42, ArrayList arrayList)"
+    - object: "NEW HashMap<String,Object>()"
+      elements:
+      - "REF uniqueUuid34"
+      - "REF uniqueUuid36"
+      - "REF uniqueUuid37"
+      - "REF uniqueUuid39"
+      - "REF uniqueUuid41"
+    - vulnerabilities: "NEW ArrayList<Map<String,Object>>()"
+      elements:
+      - "REF object"
+    - separator: "NULL"
+    - collection2: "NEW ArrayList<Map<String,Object>>()"
+      elements:
+      - "REF object"
+    - collection: "NEW Collection<Map<String,Object>>()"
+      elements:
+      - "REF object"
+    - result: "REF collection"
+    altered-variables:
+    - "vulnerabilities:Collection<Map<String,Object>> collection2"
+    branches:
+    - expression: "for-each(vulnerabilities) : true"
+      lineNumber: 102
+    - expression: "separator == null : true"
+      lineNumber: 105
+    - expression: "!uniquePrefixes.containsKey(shortTitle) : true"
+      lineNumber: 111
+  - name: "consolidateVulnerabilitiesByTitleWhenSeparatorIsNotNullAndUniquePrefixesNotContainsKeyShortTitle"
+    variables:
+    - uniqueUuid61: "referenceUrl"
+    - object7: "MOCK"
+      mock-name: "object7"
+    - uniqueUuid60: "EVAL Map.entry(String uniqueUuid61, Object object7)"
+    - uniqueUuid63: "title"
+    - string2: "object2"
+    - uniqueUuid62: "EVAL Map.entry(String uniqueUuid63, String string2)"
+    - uniqueUuid65: "id"
+    - object6: "MOCK"
+      mock-name: "object6"
+    - uniqueUuid64: "EVAL Map.entry(String uniqueUuid65, Object object6)"
+    - uniqueUuid67: "vulnerabilities"
+    - uniqueUuid69: "id"
+    - string3: "object6"
+    - uniqueUuid68: "EVAL Map.entry(String uniqueUuid69, String string3)"
+    - uniqueUuid71: "url"
+    - string5: "object7"
+    - uniqueUuid70: "EVAL Map.entry(String uniqueUuid71, String string5)"
+    - hashMap2: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid68"
+      - "REF uniqueUuid70"
+    - arrayList2: "NEW ArrayList()"
+      elements:
+      - "REF hashMap2"
+    - uniqueUuid66: "EVAL Map.entry(String uniqueUuid67, ArrayList arrayList2)"
+    - object: "NEW HashMap<String,Object>()"
+      elements:
+      - "REF uniqueUuid60"
+      - "REF uniqueUuid62"
+      - "REF uniqueUuid64"
+      - "REF uniqueUuid66"
+    - vulnerabilitiesItem1: "NEW Map<String,Object>()"
+      elements: []
+    - vulnerabilities: "NEW ArrayList<Map<String,Object>>()"
+      elements:
+      - "REF object"
+      - "REF vulnerabilitiesItem1"
+    - separator: "separator1"
+    - collection: "NEW ArrayList<Map<String,Object>>()"
+      elements:
+      - "REF object"
+      - "REF vulnerabilitiesItem1"
+    - expectedResult: "THROW NEW NullPointerException()"
+    - result: "REF expectedResult"
+    altered-variables:
+    - "vulnerabilities:Collection<Map<String,Object>> collection"
+    branches:
+    - expression: "for-each(vulnerabilities) : true"
+      lineNumber: 102
+    - expression: "separator == null : false"
+      lineNumber: 105
+    - expression: "!uniquePrefixes.containsKey(shortTitle) : true"
+      lineNumber: 111
+  sourceCodeSignature: "Collection<Map<String, Object>> consolidateVulnerabilitiesByTitle(Collection<Map<String,\
+    \ Object>> vulnerabilities, String separator)"

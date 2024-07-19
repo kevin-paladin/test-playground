@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) {
         var policyResult = new AssetTypeGroupedVulnerabilitiesRule().execute(
             new HardCodedAssetLookup(), getRuleParams(), getResourceAttributes());
-        System.out.println(
-            STR."The policy; name=\{policyResult.getDesc()}; status=\{policyResult.getStatus()};");
+        //System.out.println(
+          //  STR."The policy; name=\{policyResult.getDesc()}; status=\{policyResult.getStatus()};");
     }
 
     public static Map<String, String> getRuleParams() { // made this public so that it can be tested

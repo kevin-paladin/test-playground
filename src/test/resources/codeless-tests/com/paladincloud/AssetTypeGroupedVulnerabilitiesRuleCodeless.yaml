@@ -1,0 +1,424 @@
+---
+class: "com.paladincloud.AssetTypeGroupedVulnerabilitiesRule"
+fields: []
+imports:
+- "com.paladincloud.AssetLookup"
+- "java.util.Map"
+- "java.lang.String"
+- "com.paladincloud.models.PolicyResult"
+- "java.util.HashMap"
+- "com.paladincloud.Utils"
+- "java.lang.RuntimeException"
+- "java.util.List"
+- "com.google.gson.JsonObject"
+- "java.lang.Exception"
+- "java.util.ArrayList"
+- "com.fasterxml.jackson.core.JsonProcessingException"
+- "com.paladincloud.models.Annotation"
+- "com.paladincloud.models.Annotation$Type"
+methods:
+- targetMethod: "execute(AssetLookup assetLookup, Map<String, String> ruleParam, Map<String,\
+    \ String> resourceAttributes): PolicyResult result"
+  tests:
+  - name: "executeWhenUtilsNotDoesAllHaveValueCategorySeverityThrowsRuntimeException"
+    target: "NEW AssetTypeGroupedVulnerabilitiesRule()"
+    variables:
+    - assetLookup: "MOCK"
+    - uniqueUuid2: "src_asset_key"
+    - string4: "ruleParamItem1Value1"
+    - uniqueUuid1: "EVAL Map.entry(String uniqueUuid2, String string4)"
+    - uniqueUuid4: "severityMatchCriteria"
+    - string3: "ruleParamItem2Value1"
+    - uniqueUuid3: "EVAL Map.entry(String uniqueUuid4, String string3)"
+    - uniqueUuid6: "policyCategory"
+    - string: "ruleParamItem3Value1"
+    - uniqueUuid5: "EVAL Map.entry(String uniqueUuid6, String string)"
+    - uniqueUuid8: "severity"
+    - string2: "ruleParamItem4Value1"
+    - uniqueUuid7: "EVAL Map.entry(String uniqueUuid8, String string2)"
+    - ruleParam: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid1"
+      - "REF uniqueUuid3"
+      - "REF uniqueUuid5"
+      - "REF uniqueUuid7"
+    - resourceAttributes: "NEW Map<String,String>()"
+      elements: []
+    - Utils.class: "MOCK"
+      mock-expressions:
+      - "doesAllHaveValue(String[] stringArray): boolean boolean1"
+    - boolean1: false
+    - stringArray: "NEW String[]"
+      elements:
+      - "REF string"
+      - "REF string2"
+    - uniqueUuid9: "Missing value in rule configuration, cannot execute the rule"
+    - runtimeException: "THROW NEW RuntimeException(String uniqueUuid9)"
+    - result: "REF runtimeException"
+    branches:
+    - expression: "!Utils.doesAllHaveValue(category, severity) : true"
+      lineNumber: 56
+  - name: "executeWhenCaughtExceptionThrowsRuntimeException"
+    target: "NEW AssetTypeGroupedVulnerabilitiesRule()"
+    disabled: true
+    variables:
+    - assetLookup: "MOCK"
+      mock-expressions:
+      - "findMatchingAssetsWithVulnerabilities(String string8): List<JsonObject> list"
+    - uniqueUuid11: "policyCategory"
+    - string: "ruleParamItem1Value1"
+    - uniqueUuid10: "EVAL Map.entry(String uniqueUuid11, String string)"
+    - ruleParamKey1: "ruleParamItem2Key1"
+    - ruleParamValue1: "ruleParamItem2Value1"
+    - uniqueUuid12: "EVAL Map.entry(String ruleParamKey1, String ruleParamValue1)"
+    - ruleParamKey2: "ruleParamItem3Key1"
+    - ruleParamValue2: "ruleParamItem3Value1"
+    - uniqueUuid13: "EVAL Map.entry(String ruleParamKey2, String ruleParamValue2)"
+    - uniqueUuid15: "src_asset_key"
+    - string4: "ruleParamItem4Value1"
+    - uniqueUuid14: "EVAL Map.entry(String uniqueUuid15, String string4)"
+    - uniqueUuid17: "severity"
+    - string2: "ruleParamItem5Value1"
+    - uniqueUuid16: "EVAL Map.entry(String uniqueUuid17, String string2)"
+    - uniqueUuid19: "severityMatchCriteria"
+    - string3: "ruleParamItem6Value1"
+    - uniqueUuid18: "EVAL Map.entry(String uniqueUuid19, String string3)"
+    - ruleParam: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid10"
+      - "REF uniqueUuid12"
+      - "REF uniqueUuid13"
+      - "REF uniqueUuid14"
+      - "REF uniqueUuid16"
+      - "REF uniqueUuid18"
+    - uniqueUuid21: "_resourceid"
+    - string6: "resourceAttributesItem1Value1"
+    - uniqueUuid20: "EVAL Map.entry(String uniqueUuid21, String string6)"
+    - resourceAttributesKey1: "resourceAttributesItem2Key1"
+    - resourceAttributesValue1: "resourceAttributesItem2Value1"
+    - uniqueUuid22: "EVAL Map.entry(String resourceAttributesKey1, String resourceAttributesValue1)"
+    - resourceAttributesKey2: "resourceAttributesItem3Key1"
+    - resourceAttributesValue2: "resourceAttributesItem3Value1"
+    - uniqueUuid23: "EVAL Map.entry(String resourceAttributesKey2, String resourceAttributesValue2)"
+    - string5: "resourceAttributesItem4Value1"
+    - uniqueUuid24: "EVAL Map.entry(String string4, String string5)"
+    - resourceAttributes: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid20"
+      - "REF uniqueUuid22"
+      - "REF uniqueUuid23"
+      - "REF uniqueUuid24"
+    - Utils.class: "MOCK"
+      mock-expressions:
+      - "doesAllHaveValue(String[] stringArray): boolean boolean1"
+    - boolean1: true
+    - stringArray: "NEW String[]"
+      elements:
+      - "REF string"
+      - "REF string2"
+    - list: "NEW List<JsonObject>()"
+      elements: []
+    - string8: "A"
+    - uniqueUuid25: "unable to determine"
+    - exception: "NEW Exception()"
+    - runtimeException: "THROW NEW RuntimeException(String uniqueUuid25,Exception\
+        \ exception)"
+    - result: "REF runtimeException"
+    branches:
+    - expression: "!Utils.doesAllHaveValue(category, severity) : false"
+      lineNumber: 56
+    - expression: "resourceAttributes != null : true"
+      lineNumber: 60
+    - expression: "catch-exception (Exception) : true"
+      lineNumber: 67
+    failureReason:
+      type: "REFLECTION_CALL_FAILURE"
+  - name: "executeWhenCveDetailsGetAsJsonObjectGetVulnerabilitiesGetAsJsonArrayIsNotEmptyAndCaughtJsonProcesThrowsRuntimeException"
+    target: "NEW AssetTypeGroupedVulnerabilitiesRule()"
+    disabled: true
+    variables:
+    - assetLookup: "MOCK"
+      mock-expressions:
+      - "findMatchingAssetsWithVulnerabilities(String string8): List<JsonObject> list"
+    - uniqueUuid27: "policyCategory"
+    - string: "ruleParamItem1Value1"
+    - uniqueUuid26: "EVAL Map.entry(String uniqueUuid27, String string)"
+    - ruleParamKey1: "ruleParamItem2Key1"
+    - ruleParamValue1: "ruleParamItem2Value1"
+    - uniqueUuid28: "EVAL Map.entry(String ruleParamKey1, String ruleParamValue1)"
+    - uniqueUuid30: "src_asset_key"
+    - string4: "ruleParamItem3Value1"
+    - uniqueUuid29: "EVAL Map.entry(String uniqueUuid30, String string4)"
+    - ruleParamKey3: "ruleParamItem4Key1"
+    - ruleParamValue3: "ruleParamItem4Value1"
+    - uniqueUuid31: "EVAL Map.entry(String ruleParamKey3, String ruleParamValue3)"
+    - uniqueUuid33: "severityMatchCriteria"
+    - string3: "ruleParamItem5Value1"
+    - uniqueUuid32: "EVAL Map.entry(String uniqueUuid33, String string3)"
+    - uniqueUuid35: "severity"
+    - string2: "ruleParamItem6Value1"
+    - uniqueUuid34: "EVAL Map.entry(String uniqueUuid35, String string2)"
+    - ruleParam: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid26"
+      - "REF uniqueUuid28"
+      - "REF uniqueUuid29"
+      - "REF uniqueUuid31"
+      - "REF uniqueUuid32"
+      - "REF uniqueUuid34"
+    - string5: "resourceAttributesItem1Value1"
+    - uniqueUuid36: "EVAL Map.entry(String string4, String string5)"
+    - uniqueUuid38: "_resourceid"
+    - string6: "resourceAttributesItem2Value1"
+    - uniqueUuid37: "EVAL Map.entry(String uniqueUuid38, String string6)"
+    - resourceAttributes: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid36"
+      - "REF uniqueUuid37"
+    - Utils.class: "MOCK"
+      mock-expressions:
+      - "doesAllHaveValue(String[] stringArray): boolean boolean1"
+    - boolean1: true
+    - stringArray: "NEW String[]"
+      elements:
+      - "REF string"
+      - "REF string2"
+    - object: "NEW JsonObject()"
+    - list: "NEW ArrayList<JsonObject>()"
+      elements:
+      - "REF object"
+    - string8: ""
+    - message: "return_of_getMessage1"
+    - jsonProcessingException: "MOCK"
+    - runtimeException: "THROW NEW RuntimeException(String message,JsonProcessingException\
+        \ jsonProcessingException)"
+    - result: "REF runtimeException"
+    branches:
+    - expression: "!Utils.doesAllHaveValue(category, severity) : false"
+      lineNumber: 56
+    - expression: "resourceAttributes != null : true"
+      lineNumber: 60
+    - expression: "!(vulnerabilityInfoList == null || vulnerabilityInfoList.isEmpty())\
+        \ : true"
+      lineNumber: 71
+    - expression: "vulnerabilityInfoList == null : true"
+      lineNumber: 71
+    - expression: "for-each(vulnerabilityInfoList) : true"
+      lineNumber: 99
+      internalMethodName: "getVMVulnerabilityDetails"
+    - expression: "for-each(vulnerability.get(severity).getAsJsonArray()) : true"
+      lineNumber: 100
+      internalMethodName: "getVMVulnerabilityDetails"
+    - expression: "for-each(cveDetails.getAsJsonObject().get(\\\"vulnerabilities\\\
+        \").getAsJsonArray()) : true"
+      lineNumber: 102
+      internalMethodName: "getVMVulnerabilityDetails"
+    - expression: "catch-exception (JsonProcessingException) : true"
+      lineNumber: 120
+      internalMethodName: "getVMVulnerabilityDetails"
+    failureReason:
+      type: "METHOD_WITHOUT_EXPRESSION_SUPPORT"
+      details: "Expression missing: com.google.gson.JsonObject.get(java.lang.String)\
+        \ : com.google.gson.JsonElement"
+  - name: "executeWhenVulnerabilityGetSeverityGetAsJsonArrayIsEmptyAndVulnerabilityDetailsEquals__AndPolicyResultIsNull"
+    target: "NEW AssetTypeGroupedVulnerabilitiesRule()"
+    disabled: true
+    variables:
+    - assetLookup: "MOCK"
+      mock-expressions:
+      - "findMatchingAssetsWithVulnerabilities(String string8): List<JsonObject> list"
+    - uniqueUuid40: "src_asset_key"
+    - string4: "ruleParamItem1Value1"
+    - uniqueUuid39: "EVAL Map.entry(String uniqueUuid40, String string4)"
+    - uniqueUuid42: "policyCategory"
+    - string: "ruleParamItem2Value1"
+    - uniqueUuid41: "EVAL Map.entry(String uniqueUuid42, String string)"
+    - uniqueUuid44: "severityMatchCriteria"
+    - string3: "ruleParamItem3Value1"
+    - uniqueUuid43: "EVAL Map.entry(String uniqueUuid44, String string3)"
+    - uniqueUuid46: "severity"
+    - string2: "ruleParamItem4Value1"
+    - uniqueUuid45: "EVAL Map.entry(String uniqueUuid46, String string2)"
+    - ruleParam: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid39"
+      - "REF uniqueUuid41"
+      - "REF uniqueUuid43"
+      - "REF uniqueUuid45"
+    - uniqueUuid48: "_resourceid"
+    - string6: "resourceAttributesItem1Value1"
+    - uniqueUuid47: "EVAL Map.entry(String uniqueUuid48, String string6)"
+    - resourceAttributesKey1: "resourceAttributesItem2Key1"
+    - resourceAttributesValue1: "resourceAttributesItem2Value1"
+    - uniqueUuid49: "EVAL Map.entry(String resourceAttributesKey1, String resourceAttributesValue1)"
+    - resourceAttributesKey2: "resourceAttributesItem3Key1"
+    - resourceAttributesValue2: "resourceAttributesItem3Value1"
+    - uniqueUuid50: "EVAL Map.entry(String resourceAttributesKey2, String resourceAttributesValue2)"
+    - string5: "resourceAttributesItem4Value1"
+    - uniqueUuid51: "EVAL Map.entry(String string4, String string5)"
+    - resourceAttributes: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid47"
+      - "REF uniqueUuid49"
+      - "REF uniqueUuid50"
+      - "REF uniqueUuid51"
+    - Utils.class: "MOCK"
+      mock-expressions:
+      - "doesAllHaveValue(String[] stringArray): boolean boolean1"
+    - boolean1: true
+    - stringArray: "NEW String[]"
+      elements:
+      - "REF string"
+      - "REF string2"
+    - object: "NEW JsonObject()"
+    - list: "NEW ArrayList<JsonObject>()"
+      elements:
+      - "REF object"
+    - string8: "A"
+    - uniqueUuid52: "success"
+    - uniqueUuid53: "Policy evaluation successful"
+    - policyResult: "NEW PolicyResult(String uniqueUuid52,String uniqueUuid53)"
+    - result: "REF policyResult"
+    branches:
+    - expression: "!Utils.doesAllHaveValue(category, severity) : false"
+      lineNumber: 56
+    - expression: "resourceAttributes != null : true"
+      lineNumber: 60
+    - expression: "!(vulnerabilityInfoList == null || vulnerabilityInfoList.isEmpty())\
+        \ : true"
+      lineNumber: 71
+    - expression: "vulnerabilityInfoList == null : true"
+      lineNumber: 71
+    - expression: "for-each(vulnerabilityInfoList) : true"
+      lineNumber: 99
+      internalMethodName: "getVMVulnerabilityDetails"
+    - expression: "for-each(vulnerability.get(severity).getAsJsonArray()) : false"
+      lineNumber: 100
+      internalMethodName: "getVMVulnerabilityDetails"
+    - expression: "!vulnerabilityDetails.equals(\\\"[]\\\") : false"
+      lineNumber: 74
+    - expression: "policyResult == null : true"
+      lineNumber: 88
+    failureReason:
+      type: "METHOD_WITHOUT_EXPRESSION_SUPPORT"
+      details: "Expression missing: com.google.gson.JsonObject.get(java.lang.String)\
+        \ : com.google.gson.JsonElement"
+  - name: "executeWhenPolicyResultIsNotNull"
+    target: "NEW AssetTypeGroupedVulnerabilitiesRule()"
+    disabled: true
+    variables:
+    - assetLookup: "MOCK"
+      mock-expressions:
+      - "findMatchingAssetsWithVulnerabilities(String string8): List<JsonObject> list"
+    - uniqueUuid55: "severity"
+    - string2: ""
+    - uniqueUuid54: "EVAL Map.entry(String uniqueUuid55, String string2)"
+    - ruleParamKey1: "ruleParamItem2Key1"
+    - ruleParamValue1: "ruleParamItem2Value1"
+    - uniqueUuid56: "EVAL Map.entry(String ruleParamKey1, String ruleParamValue1)"
+    - ruleParamKey2: "ruleParamItem3Key1"
+    - ruleParamValue2: "ruleParamItem3Value1"
+    - uniqueUuid57: "EVAL Map.entry(String ruleParamKey2, String ruleParamValue2)"
+    - uniqueUuid59: "severityMatchCriteria"
+    - string3: "ruleParamItem4Value1"
+    - uniqueUuid58: "EVAL Map.entry(String uniqueUuid59, String string3)"
+    - uniqueUuid61: "src_asset_key"
+    - string4: "ruleParamItem5Value1"
+    - uniqueUuid60: "EVAL Map.entry(String uniqueUuid61, String string4)"
+    - uniqueUuid63: "policyCategory"
+    - string: "ruleParamItem6Value1"
+    - uniqueUuid62: "EVAL Map.entry(String uniqueUuid63, String string)"
+    - ruleParam: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid54"
+      - "REF uniqueUuid56"
+      - "REF uniqueUuid57"
+      - "REF uniqueUuid58"
+      - "REF uniqueUuid60"
+      - "REF uniqueUuid62"
+    - string5: "resourceAttributesItem1Value1"
+    - uniqueUuid64: "EVAL Map.entry(String string4, String string5)"
+    - resourceAttributesKey1: "resourceAttributesItem2Key1"
+    - resourceAttributesValue1: "resourceAttributesItem2Value1"
+    - uniqueUuid65: "EVAL Map.entry(String resourceAttributesKey1, String resourceAttributesValue1)"
+    - uniqueUuid67: "_resourceid"
+    - string6: "resourceAttributesItem3Value1"
+    - uniqueUuid66: "EVAL Map.entry(String uniqueUuid67, String string6)"
+    - resourceAttributes: "NEW HashMap<String,String>()"
+      elements:
+      - "REF uniqueUuid64"
+      - "REF uniqueUuid65"
+      - "REF uniqueUuid66"
+    - Annotation.class: "MOCK"
+      mock-expressions:
+      - "buildAnnotation(Map<String,String> ruleParam, Annotation.Type Enum-com.paladincloud.models.Annotation$Type-ISSUE):\
+        \ Annotation annotation"
+    - uniqueUuid79: "desc"
+    - string14: "VM Instance with  vulnerabilities found"
+    - uniqueUuid78: "EVAL Map.entry(String uniqueUuid79, String string14)"
+    - uniqueUuid81: "severity"
+    - uniqueUuid80: "EVAL Map.entry(String uniqueUuid81, String string2)"
+    - uniqueUuid83: "policyCategory"
+    - uniqueUuid82: "EVAL Map.entry(String uniqueUuid83, String string)"
+    - uniqueUuid85: "vulnerabilityDetails"
+    - string13: "[{\\\"title\\\":null,\\\"vulnerabilityUrl\\\":null,\\\"cveList\\\"\
+        :null}]"
+    - uniqueUuid84: "EVAL Map.entry(String uniqueUuid85, String string13)"
+    - annotation: "NEW Annotation()"
+      elements:
+      - "REF uniqueUuid78"
+      - "REF uniqueUuid80"
+      - "REF uniqueUuid82"
+      - "REF uniqueUuid84"
+    - Enum-com.paladincloud.models.Annotation$Type-ISSUE: "EVAL Enum.valueOf(Annotation.Type,\
+        \ ISSUE)"
+    - Utils.class: "MOCK"
+      mock-expressions:
+      - "doesAllHaveValue(String[] stringArray): boolean boolean1"
+    - boolean1: true
+    - stringArray: "NEW String[]"
+      elements:
+      - "REF string"
+      - "REF string2"
+    - object: "NEW JsonObject()"
+    - listItem1: "NEW JsonObject()"
+    - list: "NEW ArrayList<JsonObject>()"
+      elements:
+      - "REF object"
+      - "REF listItem1"
+    - string8: "A"
+    - uniqueUuid122: "fail"
+    - uniqueUuid123: "Error in policy evaluation"
+    - policyResult: "NEW PolicyResult(String uniqueUuid122,String uniqueUuid123,Annotation\
+        \ annotation)"
+    - result: "REF policyResult"
+    branches:
+    - expression: "!Utils.doesAllHaveValue(category, severity) : false"
+      lineNumber: 56
+    - expression: "resourceAttributes != null : true"
+      lineNumber: 60
+    - expression: "!(vulnerabilityInfoList == null || vulnerabilityInfoList.isEmpty())\
+        \ : true"
+      lineNumber: 71
+    - expression: "vulnerabilityInfoList == null : true"
+      lineNumber: 71
+    - expression: "for-each(vulnerabilityInfoList) : true"
+      lineNumber: 99
+      internalMethodName: "getVMVulnerabilityDetails"
+    - expression: "for-each(vulnerability.get(severity).getAsJsonArray()) : true"
+      lineNumber: 100
+      internalMethodName: "getVMVulnerabilityDetails"
+    - expression: "for-each(cveDetails.getAsJsonObject().get(\\\"vulnerabilities\\\
+        \").getAsJsonArray()) : true"
+      lineNumber: 102
+      internalMethodName: "getVMVulnerabilityDetails"
+    - expression: "!vulnerabilityDetails.equals(\\\"[]\\\") : true"
+      lineNumber: 74
+    - expression: "policyResult == null : false"
+      lineNumber: 88
+    failureReason:
+      type: "METHOD_WITHOUT_EXPRESSION_SUPPORT"
+      details: "Expression missing: com.google.gson.JsonObject.get(java.lang.String)\
+        \ : com.google.gson.JsonElement"
+  sourceCodeSignature: "PolicyResult execute(AssetLookup assetLookup, Map<String,\
+    \ String> ruleParam, Map<String, String> resourceAttributes)"

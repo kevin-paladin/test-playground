@@ -1,0 +1,32 @@
+---
+fullClassName: "com.paladincloud.FunctionCallerSapientGeneratedCodelessTest"
+testMethodExecutions:
+- targetMethod: "Object getConvertedNodePools(String nodePools)"
+  tests:
+  - testName: "getConvertedNodePoolsWhenShieldedConfigNodeIsNotNullAndCaughtIOException"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "null"
+    timestamp: 1721171830316
+  - testName: "getConvertedNodePoolsWhenShieldedConfigNodeIsNotNull"
+    testExecutionStatus: "SKIPPED"
+    resultValue: "NEW Object()"
+    timestamp: 1721171830315
+    failureLineNumber: 44
+- targetMethod: "String convertDateTimeFormat(String inputDateTimeString, String currentDateFormat,\
+    \ String expectedDateFormat)"
+  tests:
+  - testName: "convertDateTimeFormatTest"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "\\\"01/01/2022 00:00:00\\\""
+    timestamp: 1721171830324
+- targetMethod: "Collection<Map<String, Object>> consolidateVulnerabilitiesByTitle(Collection<Map<String,\
+    \ Object>> vulnerabilities, String separator)"
+  tests:
+  - testName: "consolidateVulnerabilitiesByTitleWhenUniquePrefixesNotContainsKeyShortTitle"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "new Collection<String,Object>>() { object }"
+    timestamp: 1721171830325
+  - testName: "consolidateVulnerabilitiesByTitleWhenSeparatorIsNotNullAndUniquePrefixesNotContainsKeyShortTitle"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "throw NEW NullPointerException()"
+    timestamp: 1721171830327

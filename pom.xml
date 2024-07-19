@@ -17,6 +17,24 @@
   </properties>
   <dependencies>
     <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <version>2.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.12.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>5.2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.opentest4j</groupId>
       <artifactId>opentest4j</artifactId>
       <version>1.1.1</version>
@@ -36,16 +54,10 @@
       <artifactId>gson</artifactId>
       <version>2.11.0</version>
     </dependency>
-
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>${apache-commons.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>5.12.0</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>

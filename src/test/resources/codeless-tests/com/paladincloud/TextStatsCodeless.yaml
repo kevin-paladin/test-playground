@@ -1,0 +1,43 @@
+---
+class: "com.paladincloud.TextStats"
+fields: []
+imports:
+- "java.lang.String"
+- "java.lang.Integer"
+- "java.util.Map"
+- "java.util.HashMap"
+- "com.paladincloud.StringExtras"
+methods:
+- targetMethod: "process(String text): Map<String, Integer> result"
+  tests:
+  - name: "processWhenTextIsNull"
+    variables:
+    - text: "NULL"
+    - hashMap: "NEW HashMap<String,Integer>()"
+      elements: []
+    - result: "REF hashMap"
+    branches:
+    - expression: "text == null : true"
+      lineNumber: 13
+  - name: "processWhenResponseNotContainsKeyToken"
+    variables:
+    - text: "A"
+    - StringExtras.class.real: "EVAL StringExtras.class"
+      method-calls:
+      - "removeNonSpaceAndCharacters(String text): String string"
+    - string: "A"
+    - uniqueRUuid2: "a"
+    - uniqueRUuid3: 1
+    - uniqueRUuid1: "EVAL Map.entry(String uniqueRUuid2, Integer uniqueRUuid3)"
+    - hashMap: "NEW HashMap<String,Integer>()"
+      elements:
+      - "REF uniqueRUuid1"
+    - result: "REF hashMap"
+    branches:
+    - expression: "text == null : false"
+      lineNumber: 13
+    - expression: "tokenizer.hasMoreTokens() : true"
+      lineNumber: 19
+    - expression: "response.containsKey(token) : false"
+      lineNumber: 21
+  sourceCodeSignature: "Map<String, Integer> process(String text)"

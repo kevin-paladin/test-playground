@@ -1,4 +1,4 @@
-package com.paladincloud;
+package com.paladincloud.Diffblue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -10,6 +10,9 @@ import static org.mockito.Mockito.when;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.paladincloud.AssetLookup;
+import com.paladincloud.AssetTypeGroupedVulnerabilitiesRule;
+import com.paladincloud.Constants;
 import com.paladincloud.models.PolicyResult;
 
 import java.util.ArrayList;

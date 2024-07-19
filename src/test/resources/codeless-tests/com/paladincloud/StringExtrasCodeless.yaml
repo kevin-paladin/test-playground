@@ -1,0 +1,17 @@
+---
+class: "com.paladincloud.StringExtras"
+fields: []
+imports:
+- "java.lang.String"
+methods:
+- targetMethod: "removeNonSpaceAndCharacters(String str): String result"
+  tests:
+  - name: "removeNonSpaceAndCharactersWhenTokenizerHasMoreTokens"
+    variables:
+    - str: "str1"
+    - string2: "str1"
+    - result: "REF string2"
+    branches:
+    - expression: "tokenizer.hasMoreTokens() : true"
+      lineNumber: 16
+  sourceCodeSignature: "String removeNonSpaceAndCharacters(String str)"

@@ -1,0 +1,13 @@
+---
+fullClassName: "com.paladincloud.TextStatsSapientGeneratedCodelessTest"
+testMethodExecutions:
+- targetMethod: "Map<String, Integer> process(String text)"
+  tests:
+  - testName: "processWhenTextIsNull"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "new Map<String,Integer>()"
+    timestamp: 1721092855343
+  - testName: "processWhenResponseNotContainsKeyToken"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "new HashMap<String,Integer>() { uniqueRUuid1 }"
+    timestamp: 1721092855345

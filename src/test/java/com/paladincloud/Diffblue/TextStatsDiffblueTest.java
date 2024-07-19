@@ -1,10 +1,11 @@
-package com.paladincloud;
+package com.paladincloud.Diffblue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
 
+import com.paladincloud.TextStats;
 import org.junit.jupiter.api.Test;
 
 class TextStatsDiffblueTest {

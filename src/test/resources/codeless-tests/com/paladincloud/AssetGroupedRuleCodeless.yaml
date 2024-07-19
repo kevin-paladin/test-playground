@@ -1,0 +1,145 @@
+---
+class: "com.paladincloud.AssetGroupedRule"
+fields: []
+imports:
+- "java.util.List"
+- "com.paladincloud.AssetGroupedRule$Asset"
+- "com.paladincloud.AssetGroupedRule$RuleParameters"
+- "com.paladincloud.AssetGroupedRule$ResourceAttributes"
+- "com.paladincloud.models.PolicyResult"
+- "com.fasterxml.jackson.core.JsonProcessingException"
+- "java.util.ArrayList"
+- "java.lang.String"
+- "com.paladincloud.AssetGroupedRule$Asset$Vulnerability"
+- "com.paladincloud.models.Annotation"
+methods:
+- targetMethod: "execute(List<AssetGroupedRule.Asset> assets, AssetGroupedRule.RuleParameters\
+    \ ruleParameters, AssetGroupedRule.ResourceAttributes resourceAttributes) throws\
+    \ JsonProcessingException: PolicyResult result"
+  tests:
+  - name: "executeWhenMatchingAssetsIsEmpty"
+    target: "NEW AssetGroupedRule()"
+    variables:
+    - assetGroupedRule.Asset-instanceId: "A"
+    - assetGroupedRule.Asset-low: "NEW List()"
+      elements: []
+    - assetGroupedRule.Asset-critical: "NEW List()"
+      elements: []
+    - assetGroupedRule.Asset: "NEW AssetGroupedRule.Asset(String assetGroupedRule.Asset-instanceId,List\
+        \ assetGroupedRule.Asset-low,List assetGroupedRule.Asset-critical)"
+    - assets: "NEW ArrayList<AssetGroupedRule.Asset>()"
+      elements:
+      - "REF assetGroupedRule.Asset"
+    - ruleParameters: "MOCK"
+    - resourceAttributes-resourceId: "B"
+    - resourceAttributes: "NEW AssetGroupedRule.ResourceAttributes(String resourceAttributes-resourceId)"
+    - policyResult: "NULL"
+    - result: "REF policyResult"
+    branches:
+    - expression: "branch expression (line 17) : false"
+      lineNumber: 17
+    - expression: "!matchingAssets.isEmpty() : false"
+      lineNumber: 18
+  - name: "executeWhenVulnerabilitiesIsEmptyAndPolicyResultIsNull"
+    target: "NEW AssetGroupedRule()"
+    disabled: true
+    variables:
+    - assetGroupedRule.Asset-instanceId: "F"
+    - assetGroupedRule.Asset-low: "NEW List()"
+      elements: []
+    - assetGroupedRule.Asset-critical: "NEW List<AssetGroupedRule.Asset.Vulnerability>()"
+      elements: []
+    - assetGroupedRule.Asset: "NEW AssetGroupedRule.Asset(String assetGroupedRule.Asset-instanceId,List\
+        \ assetGroupedRule.Asset-low,List<AssetGroupedRule.Asset.Vulnerability> assetGroupedRule.Asset-critical)"
+    - assets: "NEW ArrayList<AssetGroupedRule.Asset>()"
+      elements:
+      - "REF assetGroupedRule.Asset"
+    - ruleParameters: "MOCK"
+    - resourceAttributes-resourceId: "F"
+    - resourceAttributes: "NEW AssetGroupedRule.ResourceAttributes(String resourceAttributes-resourceId)"
+    - uniqueUuid1: "success"
+    - uniqueUuid2: "Policy evaluation successful"
+    - policyResult: "NEW PolicyResult(String uniqueUuid1,String uniqueUuid2)"
+    - result: "REF policyResult"
+    branches:
+    - expression: "branch expression (line 17) : true"
+      lineNumber: 17
+    - expression: "!matchingAssets.isEmpty() : true"
+      lineNumber: 18
+    - expression: "for-each(assets) : true"
+      lineNumber: 46
+      internalMethodName: "getVulnerabilities"
+    - expression: "switch(severityLevel) = CRITICAL : true"
+      lineNumber: 47
+      internalMethodName: "getVulnerabilities"
+    - expression: "!vulnerabilities.isEmpty() : false"
+      lineNumber: 21
+    - expression: "policyResult == null : true"
+      lineNumber: 34
+    failureReason:
+      type: "UNKNOWN_REASON"
+  - name: "executeWhenPolicyResultIsNotNull"
+    target: "NEW AssetGroupedRule()"
+    disabled: true
+    variables:
+    - assetGroupedRule.Asset-instanceId: ""
+    - assetGroupedRule.Asset-low: "NEW List<AssetGroupedRule.Asset.Vulnerability>()"
+      elements: []
+    - assetGroupedRule.Asset-critical: "NEW List()"
+      elements: []
+    - assetGroupedRule.Asset: "NEW AssetGroupedRule.Asset(String assetGroupedRule.Asset-instanceId,List<AssetGroupedRule.Asset.Vulnerability>\
+        \ assetGroupedRule.Asset-low,List assetGroupedRule.Asset-critical)"
+    - assets: "NEW ArrayList<AssetGroupedRule.Asset>()"
+      elements:
+      - "REF assetGroupedRule.Asset"
+    - ruleParameters: "MOCK"
+    - resourceAttributes-resourceId: ""
+    - resourceAttributes: "NEW AssetGroupedRule.ResourceAttributes(String resourceAttributes-resourceId)"
+    - Annotation.class: "MOCK"
+      mock-expressions:
+      - "create(String string6, String string8, String string10): Annotation annotation"
+    - uniqueUuid4: "desc"
+    - string12: "VM Instance with LOW vulnerabilities found"
+    - uniqueUuid3: "EVAL Map.entry(String uniqueUuid4, String string12)"
+    - uniqueUuid6: "severity"
+    - string14: "LOW"
+    - uniqueUuid5: "EVAL Map.entry(String uniqueUuid6, String string14)"
+    - uniqueUuid8: "vulnerabilityDetails"
+    - string16: "return_of_createItem3Value1"
+    - uniqueUuid7: "EVAL Map.entry(String uniqueUuid8, String string16)"
+    - annotation: "NEW Annotation()"
+      elements:
+      - "REF uniqueUuid3"
+      - "REF uniqueUuid5"
+      - "REF uniqueUuid7"
+    - string6: "string6"
+    - string8: "string8"
+    - string10: "string10"
+    - uniqueUuid30: "fail"
+    - uniqueUuid31: "Error in policy evaluation"
+    - policyResult: "NEW PolicyResult(String uniqueUuid30,String uniqueUuid31,Annotation\
+        \ annotation)"
+    - result: "REF policyResult"
+    branches:
+    - expression: "branch expression (line 17) : true"
+      lineNumber: 17
+    - expression: "!matchingAssets.isEmpty() : true"
+      lineNumber: 18
+    - expression: "for-each(assets) : true"
+      lineNumber: 46
+      internalMethodName: "getVulnerabilities"
+    - expression: "switch(severityLevel) = LOW : true"
+      lineNumber: 47
+      internalMethodName: "getVulnerabilities"
+    - expression: "!vulnerabilities.isEmpty() : true"
+      lineNumber: 21
+    - expression: "policyResult == null : false"
+      lineNumber: 34
+    failureReason:
+      type: "VARIABLE_THAT_COULD_NOT_BE_ISOLATED_MOCKED"
+      source: "new ObjectMapper().writeValueAsString(vulnerabilities));"
+      lineNumber: 29
+      details: "A variable could not be isolated/mocked when calling a method - Variable\
+        \ name: object of type ObjectMapper - Method: writeValueAsString"
+  sourceCodeSignature: "PolicyResult execute(List<Asset> assets, RuleParameters ruleParameters,\
+    \ ResourceAttributes resourceAttributes)"

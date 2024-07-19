@@ -1,0 +1,68 @@
+---
+class: "com.paladincloud.Utils"
+fields: []
+imports:
+- "java.lang.String"
+methods:
+- targetMethod: "getHost(String envVariableName): String result"
+  tests:
+  - name: "getHostWhenStringUtilsNotIsEmptyEnvVariableName"
+    disabled: true
+    variables:
+    - envVariableName: "A"
+    - string: "result1"
+    - result: "REF string"
+    branches:
+    - expression: "!StringUtils.isEmpty(envVariableName) : true"
+      lineNumber: 14
+    failureReason:
+      type: "UNKNOWN_REASON"
+  sourceCodeSignature: "String getHost(String envVariableName)"
+- targetMethod: "doesAllHaveValue(String[] strings): boolean result"
+  tests:
+  - name: "doesAllHaveValueWhenStringsLengthEquals0"
+    variables:
+    - strings: "NEW String[]"
+      elements: []
+    - expectedResult: false
+    - result: "REF expectedResult"
+    branches:
+    - expression: "null == strings : false"
+      lineNumber: 21
+    - expression: "strings.length == 0 : true"
+      lineNumber: 21
+  - name: "doesAllHaveValueWhenStringUtilsIsEmptyStr"
+    variables:
+    - strings: "NEW String[]"
+      elements: []
+    - expectedResult: false
+    - result: "REF expectedResult"
+    branches:
+    - expression: "null == strings : false"
+      lineNumber: 21
+    - expression: "strings.length == 0 : false"
+      lineNumber: 21
+    - expression: "for-each(strings) : true"
+      lineNumber: 24
+    - expression: "StringUtils.isEmpty(str) : true"
+      lineNumber: 25
+    failureReason:
+      type: "PROVER_COULD_NOT_SOLVE_THE_PROBLEM"
+  - name: "doesAllHaveValueWhenStringUtilsNotIsEmptyStr"
+    variables:
+    - string: "A"
+    - strings: "NEW String[]"
+      elements:
+      - "REF string"
+    - expectedResult: true
+    - result: "REF expectedResult"
+    branches:
+    - expression: "null == strings : false"
+      lineNumber: 21
+    - expression: "strings.length == 0 : false"
+      lineNumber: 21
+    - expression: "for-each(strings) : true"
+      lineNumber: 24
+    - expression: "StringUtils.isEmpty(str) : false"
+      lineNumber: 25
+  sourceCodeSignature: "boolean doesAllHaveValue(String... strings)"

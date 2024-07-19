@@ -1,0 +1,52 @@
+---
+fullClassName: "com.paladincloud.AssetTypeGroupedVulnerabilitiesRuleSapientGeneratedCodelessTest"
+testMethodExecutions:
+- targetMethod: "PolicyResult execute(AssetLookup assetLookup, Map<String, String>\
+    \ ruleParam, Map<String, String> resourceAttributes)"
+  tests:
+  - testName: "executeWhenUtilsNotDoesAllHaveValueCategorySeverityThrowsRuntimeException"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "throw NEW RuntimeException(\\\"Missing value in rule configuration,\
+      \ cannot execute the rule\\\")"
+    timestamp: 1721093218457
+  - testName: "executeWhenCaughtExceptionThrowsRuntimeException"
+    testExecutionStatus: "FAILED"
+    resultValue: "throw NEW RuntimeException(\\\"unable to determine\\\", NEW Exception())"
+    pathFailureReasons:
+    - "org.opentest4j.AssertionFailedError: Expected java.lang.RuntimeException to\
+      \ be thrown, but nothing was thrown."
+    timestamp: 1721093218460
+    failureLineNumber: 96
+  - testName: "executeWhenCveDetailsGetAsJsonObjectGetVulnerabilitiesGetAsJsonArrayIsNotEmptyAndCaughtJsonProcesThrowsRuntimeException"
+    testExecutionStatus: "FAILED"
+    resultValue: "throw NEW RuntimeException(\\\"return_of_getMessage1\\\", MOCK(JsonProcessingException.class))"
+    pathFailureReasons:
+    - "org.opentest4j.AssertionFailedError: Expected java.lang.RuntimeException to\
+      \ be thrown, but nothing was thrown."
+    timestamp: 1721093218483
+    failureLineNumber: 149
+  - testName: "executeWhenVulnerabilityGetSeverityGetAsJsonArrayIsEmptyAndVulnerabilityDetailsEquals__AndPolicyResultIsNull"
+    testExecutionStatus: "FAILED"
+    resultValue: "NEW PolicyResult(\\\"success\\\", \\\"Policy evaluation successful\\\
+      \")"
+    pathFailureReasons:
+    - "\\nArgument(s) are different! Wanted:\\nassetLookup.findMatchingAssetsWithVulnerabilities(\\\
+      n    \\\"A\\\"\\n);\\n-> at com.paladincloud.AssetTypeGroupedVulnerabilitiesRuleSapientGeneratedCodelessTest.lambda$executeWhenVulnerabilityGetSeverityGetAsJsonArrayIsEmptyAndVulnerabilityDetailsEquals__AndPolicyResultIsNull$14(AssetTypeGroupedVulnerabilitiesRuleSapientGeneratedCodelessTest.java:204)\\\
+      nActual invocations have different arguments:\\nassetLookup.findMatchingAssetsWithVulnerabilities(\\\
+      n    \\\"resourceAttributesItem4Value1\\\"\\n);\\n-> at com.paladincloud.AssetTypeGroupedVulnerabilitiesRule.execute(AssetTypeGroupedVulnerabilitiesRule.java:66)\\\
+      n\\nComparison Failure: "
+    timestamp: 1721093218486
+    failureLineNumber: 204
+  - testName: "executeWhenPolicyResultIsNotNull"
+    testExecutionStatus: "FAILED"
+    resultValue: "NEW PolicyResult(\\\"fail\\\", \\\"Error in policy evaluation\\\"\
+      , new Annotation() { uniqueUuid124, uniqueUuid126, uniqueUuid128, uniqueUuid130\
+      \ })"
+    pathFailureReasons:
+    - "\\nArgument(s) are different! Wanted:\\nassetLookup.findMatchingAssetsWithVulnerabilities(\\\
+      n    \\\"A\\\"\\n);\\n-> at com.paladincloud.AssetTypeGroupedVulnerabilitiesRuleSapientGeneratedCodelessTest.lambda$executeWhenPolicyResultIsNotNull$19(AssetTypeGroupedVulnerabilitiesRuleSapientGeneratedCodelessTest.java:262)\\\
+      nActual invocations have different arguments:\\nassetLookup.findMatchingAssetsWithVulnerabilities(\\\
+      n    \\\"resourceAttributesItem1Value1\\\"\\n);\\n-> at com.paladincloud.AssetTypeGroupedVulnerabilitiesRule.execute(AssetTypeGroupedVulnerabilitiesRule.java:66)\\\
+      n\\nComparison Failure: "
+    timestamp: 1721093218490
+    failureLineNumber: 262

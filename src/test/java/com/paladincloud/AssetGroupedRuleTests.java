@@ -1,9 +1,10 @@
+package com.paladincloud;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.paladincloud.AssetGroupedRule;
 import com.paladincloud.AssetGroupedRule.SeverityLevel;
-import com.paladincloud.Constants;
+
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

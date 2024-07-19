@@ -1,0 +1,27 @@
+---
+fullClassName: "com.paladincloud.UtilsSapientGeneratedCodelessTest"
+testMethodExecutions:
+- targetMethod: "String getHost(String envVariableName)"
+  tests:
+  - testName: "getHostWhenStringUtilsNotIsEmptyEnvVariableName"
+    testExecutionStatus: "FAILED"
+    resultValue: "\\\"result1\\\""
+    pathFailureReasons:
+    - "java.lang.AssertionError: \\r\\nExpected: \\\"result1\\\"\\r\\n     but: was\
+      \ null"
+    timestamp: 1721171555302
+    failureLineNumber: 23
+- targetMethod: "boolean doesAllHaveValue(String... strings)"
+  tests:
+  - testName: "doesAllHaveValueWhenStringsLengthEquals0"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "false"
+    timestamp: 1721171555305
+  - testName: "doesAllHaveValueWhenStringUtilsIsEmptyStr"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "false"
+    timestamp: 1721171555308
+  - testName: "doesAllHaveValueWhenStringUtilsNotIsEmptyStr"
+    testExecutionStatus: "SUCCESS"
+    resultValue: "true"
+    timestamp: 1721171555309
